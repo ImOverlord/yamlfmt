@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: go get ./internal
       - name: Build
-        run: GOOS=js GOARCH=wasm go build -o ./src/main.wasm main.go
+        run: GOOS=js GOARCH=wasm go build -o ./src/main.wasm ./internal/main.go
       - name: Get WASM Js file
         run: cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" ./src
       # Build Node package
