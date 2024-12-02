@@ -31,7 +31,7 @@ jobs:
         with:
           go-version: 'stable'
       - name: Install dependencies
-        run: go get .
+        run: go get ./internal
       - name: Build
         run: GOOS=js GOARCH=wasm go build -o ./src/main.wasm main.go
       - name: Get WASM Js file
