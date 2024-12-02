@@ -11,5 +11,5 @@ jobs:
     uses: ./.github/workflows/build.yaml
     with:
       RUN_TEST: true
-      NODE_VERSION_MATRIX: "['18.x', '20.x', '22.x']"
+      NODE_VERSION_MATRIX: "['20.x', '22.x']"
       ARTIFACT: false

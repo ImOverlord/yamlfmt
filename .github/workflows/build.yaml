@@ -10,7 +10,7 @@ on:
       NODE_VERSION_MATRIX:
         required: false
         type: string
-        default: "['18.x', '20.x', '22.x']"
+        default: "['20.x', '22.x']"
       ARTIFACT:
         required: false
         type: boolean
