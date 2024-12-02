@@ -1,0 +1,54 @@
+name: Build Package
+
+on:
+  workflow_call:
+    inputs:
+      RUN_TEST:
+        required: false
+        type: boolean
+        default: true
+      NODE_VERSION_MATRIX:
+        required: false
+        type: string
+        default: "['18.x', '20.x', '22.x']"
+      ARTIFACT:
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Trick since input don't support arrays yet
+        node-version: ${{ fromJson(inputs.NODE_VERSION_MATRIX) }}
+    steps:
+      - uses: actions/checkout@v4
+      # Build WASM code
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+      - name: Install dependencies
+        run: go get .
+      - name: Build
+        run: GOOS=js GOARCH=wasm go build -o ./src/main.wasm main.go
+      - name: Get WASM Js file
+        run: cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" ./src
+      # Build Node package
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build:ts
+      - run: npm test
+        if: inputs.RUN_TEST == true
+      - run: cp src/main.wasm dist/
+        if: inputs.ARTIFACT == true
+      - uses: actions/upload-artifact@v4
+        if: inputs.ARTIFACT == true
+        with:
+          name: build
+          path: dist/

@@ -1,0 +1,28 @@
+
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowJs": false ,
+    "declaration": true ,
+    "sourceMap": true ,
+    "outDir": "./dist" ,
+    "removeComments": true ,
+    "noEmit": false,
+    "stripInternal": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "allowUnusedLabels": false,
+    "skipLibCheck": true,
+  },
+  "include": ["src/*.ts"],
+  "exclude": ["node_modules", "src/*.test.ts"]
+}

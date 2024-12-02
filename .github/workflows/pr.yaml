@@ -1,0 +1,15 @@
+name: Pull Request CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/build.yaml
+    with:
+      RUN_TEST: true
+      NODE_VERSION_MATRIX: "['18.x', '20.x', '22.x']"
+      ARTIFACT: false

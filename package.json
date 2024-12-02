@@ -1,0 +1,65 @@
+{
+  "name": "@imoverlord/yamlfmt",
+  "version": "0.0.0",
+  "description": "google yamlfmt sdk for node.js",
+  "keywords": [
+    "yaml",
+    "yamlfmt",
+    "fmt",
+    "format",
+    "wasm"
+  ],
+  "scripts": {
+    "test": "vitest --run",
+    "prebuild": "cp \"$(go env GOROOT)/misc/wasm/wasm_exec.js\" ./src",
+    "build": "npm run build:go && npm run build:ts",
+    "build:go": "GOOS=js GOARCH=wasm go build -o ./src/main.wasm internal/main.go",
+    "build:ts": "tsup --clean",
+    "postbuild": "cp src/main.wasm dist/",
+    "release": "changeset publish"
+  },
+  "author": "ImOverlord",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "2.27.10",
+    "@types/node": "22.8.1",
+    "tsup": "8.3.5",
+    "typescript": "5.6.3",
+    "vitest": "2.1.5"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "import": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "tsup": {
+    "dts": true,
+    "bundle": true,
+    "treeshake": true,
+    "shims": true,
+    "target": "es2022",
+    "format": [
+      "esm",
+      "cjs"
+    ],
+    "entry": [
+      "src/index.ts"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ImOverlord/yamlfmt.git"
+  }
+}
