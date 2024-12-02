@@ -19,7 +19,7 @@
     "release": "changeset publish"
   },
   "author": "ImOverlord",
-  "license": "MIT",
+  "license": "apache-2.0",
   "devDependencies": {
     "@changesets/cli": "2.27.10",
     "@types/node": "22.8.1",
