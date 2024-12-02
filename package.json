@@ -1,6 +1,6 @@
 {
   "name": "@imoverlord/yamlfmt",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "google yamlfmt sdk for node.js",
   "keywords": [
     "yaml",
