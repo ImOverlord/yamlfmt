@@ -1,5 +1,5 @@
 <div align="center">
-  Base Template
+  yamlfmt NodeJS SDK
   <br />
   <br />
   <a href="https://github.com/ImOverlord/yamlfmt/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
