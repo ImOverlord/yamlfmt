@@ -30,17 +30,21 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 'stable'
-      - name: Install dependencies
-        run: go get ./internal
-      - name: Build
-        run: GOOS=js GOARCH=wasm go build -o ./src/main.wasm ./internal/main.go
-      - name: Get WASM Js file
-        run: cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" ./src
-      # Build Node package
+      - uses: acifani/setup-tinygo@v2
+        with:
+          tinygo-version: '0.34.0'
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      # Build GO package
+      - name: Install dependencies
+        run: go get ./internal
+      - name: Build
+        run: npm run build:go
+      - name: Get WASM Js file
+        run: cp $(tinygo env TINYGOROOT)/targets/wasm_exec.js src/wasm_exec.js
+      # Build Node package
       - run: npm ci
       - run: npm run build:ts
       - run: npm test
