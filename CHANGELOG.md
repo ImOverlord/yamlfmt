@@ -1,5 +1,11 @@
 # @imoverlord/yamlfmt
 
+## 0.2.0
+
+### Minor Changes
+
+- cfcbfc1: Move to tinygo compiler
+
 ## 0.1.0
 
 ### Minor Changes
