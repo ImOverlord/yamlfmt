@@ -13,7 +13,7 @@
     "test": "vitest --run",
     "prebuild": "cp \"$(go env GOROOT)/misc/wasm/wasm_exec.js\" ./src",
     "build": "npm run build:go && npm run build:ts",
-    "build:go": "GOOS=js GOARCH=wasm go build -o ./src/main.wasm internal/main.go",
+    "build:go": "tinygo build -o src/main.wasm -target wasm -no-debug internal/main.go",
     "build:ts": "tsup --clean",
     "postbuild": "cp src/main.wasm dist/",
     "release": "changeset publish"
