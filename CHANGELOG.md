@@ -1,5 +1,11 @@
 # @imoverlord/yamlfmt
 
+## 0.2.1
+
+### Patch Changes
+
+- c119f2f: fix missing dist folder
+
 ## 0.2.0
 
 ### Minor Changes
