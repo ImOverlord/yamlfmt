@@ -26,6 +26,9 @@ jobs:
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          title: Release PR
+          commit: "release"
   build:
     name: Build
     needs: preRelease
@@ -47,6 +50,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build
+          path: dist
       - run: npm ci
       - name: Release
         id: changesets
