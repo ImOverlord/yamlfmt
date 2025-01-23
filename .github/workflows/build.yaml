@@ -30,9 +30,6 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 'stable'
-      - uses: acifani/setup-tinygo@v2
-        with:
-          tinygo-version: '0.34.0'
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -43,7 +40,7 @@ jobs:
       - name: Build
         run: npm run build:go
       - name: Get WASM Js file
-        run: cp $(tinygo env TINYGOROOT)/targets/wasm_exec.js src/wasm_exec.js
+        run: cp \"$(go env GOROOT)/misc/wasm/wasm_exec.js\" ./src
       # Build Node package
       - run: npm ci
       - run: npm run build:ts
