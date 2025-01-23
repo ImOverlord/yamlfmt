@@ -1,5 +1,11 @@
 # @imoverlord/yamlfmt
 
+## 0.3.0
+
+### Minor Changes
+
+- fdce0fc: feat: rollback to using go compiler
+
 ## 0.2.1
 
 ### Patch Changes
